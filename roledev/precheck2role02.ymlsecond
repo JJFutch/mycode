@@ -1,0 +1,16 @@
+---
+- name: Playbook with precheck
+  hosts: ~^arista
+
+  tasks:
+  - name: Precheck Block
+    block:
+
+    - name: Import precheck role
+      import_role:
+        name: precheck
+
+    rescue:
+
+    - fail:
+        msg: "Precheck Failed. No need to rollback. Exiting."
